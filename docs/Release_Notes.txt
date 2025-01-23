@@ -1,9 +1,32 @@
-obsproc v1.2.0  RELEASED        AUG ??,2023
-        v1.2.?  IMPLEMENTED     ??? ??,2023
+obsproc v1.2.2  RELEASED        JAN 22,2025
+        v1.2.?  IMPLEMENTED     JAN ??,2025
+
+PRELUDE
+ Emergency update TANK_MAX_255004 value
 
 FILE CHANGES
+ M docs/Release_Notes.txt
+ M versions/run.ver
+ M versions/VERSION
 
+VERSIONS CHANGES
 
+ versions/run.ver
+ Export and overwrite TANK_MAX_255004
+
+ versions/VERSION
+ Updated version to 1.2.2
+
+PRE-IMPLEMENTATION TESTING
+
+ Updating the versions/run.ver will overwrite the TANK_MAX_255004 threshold and allow larger tanks to be processed.
+ The threshold is updated only slightly so that it won't increase the job runtime. 
+ 
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+obsproc v1.2.0  RELEASED        AUG ??,2023
+        v1.2.1  IMPLEMENTED     MAY 22,2024
+
+FILE CHANGES
 D docs/ReleaseNotes.txt
 M docs/Release_Notes.txt
 M jobs/JOBSPROC_CDAS_PREP1
