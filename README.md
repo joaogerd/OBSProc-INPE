@@ -1,7 +1,7 @@
 
 # 📡 OBSProc-INPE
 
-O projeto **OBSProc-INPE** tem como objetivo gerenciar o fluxo de processamento do **prepBUFR** no **INPE/CPTEC**, baseado na metodologia adotada pelo **NCEP**. Esse repositório contém o código-fonte do **ObsProc**, suas dependências, scripts auxiliares e documentação técnica para garantir a conversão e validação correta dos dados observacionais.
+The **OBSProc-INPE** project aims to manage the processing flow of **prepBUFR** at **INPE/CPTEC**, based on the methodology adopted by **NCEP**. This repository contains the **ObsProc** source code, its dependencies, auxiliary scripts, and technical documentation to ensure the correct conversion and validation of observational data.
 
 ## 🚀 Features
 - 📂 Handles observational data in **BUFR** format
