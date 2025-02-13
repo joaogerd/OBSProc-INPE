@@ -1,0 +1,6 @@
+[submodule "library/bufr-dump"]
+	path = library/bufr-dump
+	url = https://github.com/noaa-emc/bufr-dump.git
+[submodule "library/prepobs"]
+	path = library/prepobs
+	url = https://github.com/noaa-emc/prepobs.git
