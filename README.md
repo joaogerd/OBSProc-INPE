@@ -1,7 +1,7 @@
 
 # 📡 OBSProc-INPE
 
-System for processing observational data and converting it into **prepBUFR** format for numerical weather prediction (NWP) at **INPE/CPTEC**.
+O projeto **OBSProc-INPE** tem como objetivo gerenciar o fluxo de processamento do **prepBUFR** no **INPE/CPTEC**, baseado na metodologia adotada pelo **NCEP**. Esse repositório contém o código-fonte do **ObsProc**, suas dependências, scripts auxiliares e documentação técnica para garantir a conversão e validação correta dos dados observacionais.
 
 ## 🚀 Features
 - 📂 Handles observational data in **BUFR** format
