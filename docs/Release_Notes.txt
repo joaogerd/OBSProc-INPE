@@ -1,3 +1,26 @@
+obsproc v1.2.3  RELEASED        MAR 05,2025
+        v1.2.3  IMPLEMENTED     MAR 05,2025
+
+PRELUDE
+ Prepobs was updated to reflect EO to rename Gulf of Mexico
+ Obsproc is just increasing a version number
+
+FILE CHANGES
+ M docs/Release_Notes.txt
+ M versions/run.ver
+ M versions/VERSION
+
+VERSIONS CHANGES
+
+ versions/run.ver
+ Point at prepobs.v1.1.1
+
+ versions/VERSION
+ Updated version to 1.2.3
+
+PRE-IMPLEMENTATION TESTING
+ Output shoudl be identical, changes are in print statements only
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 obsproc v1.2.2  RELEASED        JAN 22,2025
         v1.2.?  IMPLEMENTED     JAN ??,2025
 
