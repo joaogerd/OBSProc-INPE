@@ -1,3 +1,44 @@
+obsproc v1.2.4  RELEASED        MAR 12,2025
+        v1.2.4  IMPLEMENTED     MAR 12,2025
+
+PRELUDE
+ Obsproc v.1.2.4 implements two major changes. 
+ 1) URMA is modified to no include the GLERL observation adjustment
+    step for URMA prepbufr.
+ 2) Global scripts have been modified to include USAF snow grib files. 
+
+FILE CHANGES
+ M docs/Release_Notes.txt
+ M jobs/JOBSPROC_URMA_PREP
+ M scripts/exglobal_dump.sh
+ M versions/VERSION
+
+DOCS CHANGES
+
+ docs/Release_Notes.txt
+ Updates release notes for obsproc v1.2.4 as seen here.
+
+JOBS CHANGES
+ 
+ jobs/JOBSPROC_URMA_PREP
+ Disables the GLERL observation adjustment step for URMA prepbufr.
+
+SCRIPTS CHANGES
+ 
+ scripts/exglobal_dump.sh
+ Modified to include snow.usaf.grib2 files.
+
+VERSIONS CHANGES
+
+ versions/VERSION
+ Updated version to 1.2.4
+
+PRE-IMPLEMENTATION TESTING
+ Less ADPSFC, MSONET, SFCSHP obs counts in the URMA prepbufr,
+ but presence of new/additional snow.usaf.grib2 data.
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
 obsproc v1.2.3  RELEASED        MAR 05,2025
         v1.2.3  IMPLEMENTED     MAR 05,2025
 

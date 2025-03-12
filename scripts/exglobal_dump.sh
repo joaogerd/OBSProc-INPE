@@ -507,13 +507,38 @@ set +x; echo -e "\n---> path to finddate.sh below is: `which finddate.sh`"; set 
          $DATA/postmsg "$jlogfile" "$msg"
       fi    
    done
-   if [ "$SENDECF" = "YES" ]; then
-      ecflow_client --event=release_sfcprep
-   fi
 
 #  endif loop $PROCESS_GRIBFLDS
 fi
 
+# Copy/Rename new 557th USAF 0.09 deg global snow AN files
+  ascii_file1=${ascii_file1:-"PS.557WW_SC.U_DI.C_GP.USAFSI_GR.C0P09DEG_AR.GLOBAL_PA.SNOW-ICE"}
+  ascii_file1_var=${ascii_file1_var:-"_DD.${PDY}_DT.${cyc}00_DF.GR2"}
+  ascii_source=${TANK_GRIBFLDS}/${PDY}/wgrbbul/557thWW_snow
+  target_filename=snow.usaf.grib2
+  if [ -s ${ascii_source}/${ascii_file1}${ascii_file1_var} ]; then
+    set +x; echo -e "\nPicking up 557th USAF snow file ${ascii_source}/${ascii_file1}${ascii_file1_var}\n"; set -x
+    cp ${ascii_source}/${ascii_file1}${ascii_file1_var} ${COMSP}${target_filename}
+  else
+    set +x; echo -e "\nReuse prior cycle 557th USAF snow file \n"; set -x
+    prior_yyyymmddCC=$($NDATE -6 ${PDY}${cyc})
+    PDY_p=`echo $prior_yyyymmddCC|cut -c1-8`
+    cyc_p=`echo $prior_yyyymmddCC|cut -c9-10`
+    ascii_source=${TANK_GRIBFLDS}/${PDY_p}/wgrbbul/557thWW_snow
+    ascii_file1_var="_DD.${PDY_p}_DT.${cyc_p}00_DF.GR2"
+    if [ -s  ${ascii_source}/${ascii_file1}${ascii_file1_var} ]; then
+      cp ${ascii_source}/${ascii_file1}${ascii_file1_var} ${COMSP}${target_filename}
+    else
+      export COMSPm1=$COMROOT/${obsNET}/${obsproc_ver}/${RUN}.${PDY_p}/$RUN.${cyc_p}.
+      echo $COMSPm1
+      cp ${COMSPm1}$target_filename ${COMSP}$target_filename
+
+    fi
+  fi
+
+  if [ "$SENDECF" = "YES" ]; then
+     ecflow_client --event=release_sfcprep
+  fi
 
 echo "=======> Dump group 1 (thread_1) not executed." > $DATA/1.out
 echo "=======> Dump group 2 (thread_2) not executed." > $DATA/2.out
