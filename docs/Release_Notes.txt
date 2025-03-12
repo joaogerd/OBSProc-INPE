@@ -1,11 +1,11 @@
 obsproc v1.2.4  RELEASED        MAR 12,2025
-        v1.2.4  IMPLEMENTED     MAR 12,2025
+        v1.2.4  IMPLEMENTED     MAR 25,2025
 
 PRELUDE
  Obsproc v.1.2.4 implements two major changes. 
  1) URMA is modified to no include the GLERL observation adjustment
     step for URMA prepbufr.
- 2) Global scripts have been modified to include USAF snow grib files. 
+ 2) Global scripts have been modified to include USAF snow grib2 files. 
 
 FILE CHANGES
  M docs/Release_Notes.txt
