@@ -2,10 +2,9 @@ obsproc v1.2.4  RELEASED        MAR 12,2025
         v1.2.4  IMPLEMENTED     MAR 25,2025
 
 PRELUDE
- Obsproc v.1.2.4 implements two major changes. 
- 1) URMA is modified to no include the GLERL observation adjustment
-    step for URMA prepbufr.
- 2) Global scripts have been modified to include USAF snow grib2 files. 
+ Obsproc v.1.2.4 implements two changes. 
+ 1) URMA is modified to not include the GLERL observation adjustment step for URMA prepbufr.
+ 2) Global scripts have been modified to include USAF snow grib2 files  
 
 FILE CHANGES
  M docs/Release_Notes.txt
@@ -14,28 +13,45 @@ FILE CHANGES
  M versions/VERSION
 
 DOCS CHANGES
-
  docs/Release_Notes.txt
  Updates release notes for obsproc v1.2.4 as seen here.
 
 JOBS CHANGES
- 
  jobs/JOBSPROC_URMA_PREP
- Disables the GLERL observation adjustment step for URMA prepbufr.
+ Disable the GLERL observation adjustment step for URMA prepbufr.
 
 SCRIPTS CHANGES
- 
  scripts/exglobal_dump.sh
- Modified to include snow.usaf.grib2 files.
+ Modify to include snow.usaf.grib2 files.
 
 VERSIONS CHANGES
-
  versions/VERSION
  Updated version to 1.2.4
 
-PRE-IMPLEMENTATION TESTING
- Less ADPSFC, MSONET, SFCSHP obs counts in the URMA prepbufr,
- but presence of new/additional snow.usaf.grib2 data.
+ECF
+ Contents of ECF directory are not in EMC repo.
+ Use $PACKAGEROOT/osbproc.v1.2.3/ecf as a starting poing and work with developers pre-implemenation to refine/update the /ecf files
+
+CHANGES TO OUTPUT AND FILE SIZES
+ Generate new snow file: [gdas,gfs].t${CC}z.snow.usaf.grib2
+ Updated URMA prepbufr will be slightly smaller than now. 
+
+CHANGES TO RESOURCES
+ None
+
+PRE-IMPLEMENTATION TESTING REQUIREMENTS
+ obsproc needs modules bufr-dump and prepobs in order to run
+ See docs/README.md for build instructions
+  See versions/build.ver and versions/run.ver for libaries
+  See previous Release Noted for generaic pre-implemenation testing steps.
+
+DISSEMINATION INFORMATION
+  For the URMA prepbufr on NOMAD changes, a SCN will be issued
+
+SPECIAL INSTRUCTIONS
+
+ Implement release/obsproc.v1.2.4 with the latest release/bufr-dump.v1.2.* and release/prepobs.v1.1.1
+
 
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
