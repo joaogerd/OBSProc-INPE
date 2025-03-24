@@ -1,5 +1,5 @@
 obsproc v1.2.4  RELEASED        MAR 12,2025
-        v1.2.4  IMPLEMENTED     MAR 25,2025
+        v1.2.4  IMPLEMENTED     MAR 24,2025
 
 PRELUDE
  Obsproc v.1.2.4 implements two changes. 
