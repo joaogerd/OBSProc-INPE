@@ -1,9 +1,112 @@
-obsproc v1.2.0  RELEASED        AUG ??,2023
-        v1.2.?  IMPLEMENTED     ??? ??,2023
+obsproc v1.2.4  RELEASED        MAR 12,2025
+        v1.2.4  IMPLEMENTED     MAR 24,2025
+
+PRELUDE
+ Obsproc v.1.2.4 implements two changes. 
+ 1) URMA is modified to not include the GLERL observation adjustment step for URMA prepbufr.
+ 2) Global scripts have been modified to include USAF snow grib2 files  
 
 FILE CHANGES
+ M docs/Release_Notes.txt
+ M jobs/JOBSPROC_URMA_PREP
+ M scripts/exglobal_dump.sh
+ M versions/VERSION
+
+DOCS CHANGES
+ docs/Release_Notes.txt
+ Updates release notes for obsproc v1.2.4 as seen here.
+
+JOBS CHANGES
+ jobs/JOBSPROC_URMA_PREP
+ Disable the GLERL observation adjustment step for URMA prepbufr.
+
+SCRIPTS CHANGES
+ scripts/exglobal_dump.sh
+ Modify to include snow.usaf.grib2 files.
+
+VERSIONS CHANGES
+ versions/VERSION
+ Updated version to 1.2.4
+
+ECF
+ Contents of ECF directory are not in EMC repo.
+ Use $PACKAGEROOT/osbproc.v1.2.3/ecf as a starting poing and work with developers pre-implemenation to refine/update the /ecf files
+
+CHANGES TO OUTPUT AND FILE SIZES
+ Generate new snow file: [gdas,gfs].t${CC}z.snow.usaf.grib2
+ Updated URMA prepbufr will be slightly smaller than now. 
+
+CHANGES TO RESOURCES
+ None
+
+PRE-IMPLEMENTATION TESTING REQUIREMENTS
+ obsproc needs modules bufr-dump and prepobs in order to run
+ See docs/README.md for build instructions
+  See versions/build.ver and versions/run.ver for libaries
+  See previous Release Noted for generaic pre-implemenation testing steps.
+
+DISSEMINATION INFORMATION
+  For the URMA prepbufr on NOMAD changes, a SCN will be issued
+
+SPECIAL INSTRUCTIONS
+
+ Implement release/obsproc.v1.2.4 with the latest release/bufr-dump.v1.2.* and release/prepobs.v1.1.1
 
 
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+obsproc v1.2.3  RELEASED        MAR 05,2025
+        v1.2.3  IMPLEMENTED     MAR 05,2025
+
+PRELUDE
+ Prepobs was updated to reflect EO to rename Gulf of Mexico
+ Obsproc is just increasing a version number
+
+FILE CHANGES
+ M docs/Release_Notes.txt
+ M versions/run.ver
+ M versions/VERSION
+
+VERSIONS CHANGES
+
+ versions/run.ver
+ Point at prepobs.v1.1.1
+
+ versions/VERSION
+ Updated version to 1.2.3
+
+PRE-IMPLEMENTATION TESTING
+ Output shoudl be identical, changes are in print statements only
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+obsproc v1.2.2  RELEASED        JAN 22,2025
+        v1.2.?  IMPLEMENTED     JAN ??,2025
+
+PRELUDE
+ Emergency update TANK_MAX_255004 value
+
+FILE CHANGES
+ M docs/Release_Notes.txt
+ M versions/run.ver
+ M versions/VERSION
+
+VERSIONS CHANGES
+
+ versions/run.ver
+ Export and overwrite TANK_MAX_255004
+
+ versions/VERSION
+ Updated version to 1.2.2
+
+PRE-IMPLEMENTATION TESTING
+
+ Updating the versions/run.ver will overwrite the TANK_MAX_255004 threshold and allow larger tanks to be processed.
+ The threshold is updated only slightly so that it won't increase the job runtime. 
+ 
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+obsproc v1.2.0  RELEASED        AUG ??,2023
+        v1.2.1  IMPLEMENTED     MAY 22,2024
+
+FILE CHANGES
 D docs/ReleaseNotes.txt
 M docs/Release_Notes.txt
 M jobs/JOBSPROC_CDAS_PREP1
