@@ -1,3 +1,51 @@
+obsproc v1.2.5  RELEASED        SPA release
+        v1.2.5  IMPLEMENTED     MAY 5, 2025
+
+PRELUDE
+ This update is SPA/Diane initiated.
+ It revisits the ecf resources for gfs/gdas/global dump jobs, to stabilize the run times for satwnd and satwhr.
+ It reduces the global dump jobs' sleep time (NAP:600->) and runs/starts them later to compensate.
+
+FILE CHANGES
+ M docs/Release_Notes.txt
+ M ecf/global/dump/jobsproc_g*_atmos_dump.ecf
+ M scripts/exglobal_dump.sh
+ M versions/VERSION
+
+DOCS CHANGES
+ docs/Release_Notes.txt
+ Updates release notes for obsproc v1.2.5
+
+SCRIPTS CHANGES
+ scripts/exglobal_dump.sh
+ Reduces NAP time
+
+VERSIONS CHANGES
+ versions/VERSION
+ Updates version to v1.2.5
+
+ECF
+ ecf/global/dump/jobsproc_g*_atmos_dump.ecf
+ Sets use of 2 nodes, i.e. #PBS -l place=vscatter:exclhost,select=2:ncpus=32:mem=500gb
+
+CHANGES TO OUTPUT AND FILE SIZES
+ None
+
+CHANGES TO RESOURCES
+ None
+
+PRE-IMPLEMENTATION TESTING REQUIREMENTS
+ obsproc needs modules bufr-dump and prepobs in order to run
+ See docs/README.md for build instructions
+ See versions/build.ver and versions/run.ver for libaries
+ See previous Release Noted for generaic pre-implemenation testing steps.
+
+DISSEMINATION INFORMATION
+  None
+
+SPECIAL INSTRUCTIONS
+ None
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 obsproc v1.2.4  RELEASED        MAR 12,2025
         v1.2.4  IMPLEMENTED     MAR 24,2025
 
