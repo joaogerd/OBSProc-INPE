@@ -358,8 +358,8 @@ EOFparm
            if  [[ $NETUP != 'GDAS' ]] || [[ $file != "saphir" ]]; then    ### no alert gdas.tCCz.saphir.tm00.bufr_d.nr 
              if [[ $NETUP != 'CDAS' ]] || [[ $file != "gpsro" ]]; then    ### no alert cdas.tCCz.gpsro.tm00.bufr_d.nr
                if [[ $NETUP != 'RAP' ]] || [[ $file != "gpsro" ]]; then   ### no alert rap.tCCz.gpsro.tm00.bufr_d.nr
-                  $DBNROOT/bin/dbn_alert MODEL ${NETUP}_BUFR_${file}_nr $job \
-                  $COMOUT/$filestem.nr
+                   $DBNROOT/bin/dbn_alert MODEL ${NETUP}_BUFR_${file}_nr $job \
+                   $COMOUT/$filestem.nr
 	       fi
              fi
            fi
@@ -506,7 +506,7 @@ $dumptime"
                rassda nexrad gpsro  airsev goesfv wndsat wdsatr osbuv8 \
                ascatt ascatw mtiasi avcsam avcspm gome   lghtng omi    \
                esamua esamub eshrs3 esmhs  ssmisu sevcsr lgycld efclam \
-	       $aircraft_nr_dm2
+	       $aircraft_nr_dm2 
 #  --> don't add any new dumps here since files are already unblocked
 #      on WCOSS!!
 

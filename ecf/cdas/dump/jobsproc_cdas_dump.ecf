@@ -30,6 +30,8 @@ module load grib_util/${grib_util_ver}
 module load bufr_dump/${bufr_dump_ver}
 module list
 
+export DBNROOT=/lfs/h1/nco/idsb/noscrub/diane.stokes/upgrades/obsproc/fakedbn
+
 $HOMEobsproc/jobs/JOBSPROC_CDAS_DUMP
 
 %include <tail.h>

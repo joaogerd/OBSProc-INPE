@@ -5,8 +5,8 @@
 export libjpeg_ver=9c
 export grib_util_ver=1.2.2
 export netcdf_ver=4.7.4
-export bufr_dump_ver=1.2.1
-export prepobs_ver=1.1.1
+export bufr_dump_ver=1.3.0
+export prepobs_ver=1.2.0
 
 export intel_ver=19.1.3.304
 export craype_ver=2.7.13
@@ -20,6 +20,7 @@ export dictionaries_ver=v3.4.0
 export seaice_analysis_ver=v4.5		#engice, seaice.*5min.grb  file		
 export cdas_ver=v1.2
 export nsst_ver=v1.2	                #rtgsst file
+export nicims_ver=v3                    #/wgrbbul/NIC.IMS_v*_YYYYJD00_*km.asc
 
 export PROCESS_MASTER_SHIP_STNLST=NO	#for monthly gdas count (run on 2nd of Month)
 export BACK=off

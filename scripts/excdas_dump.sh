@@ -43,8 +43,8 @@ echo "         Jul 30 2022 - Subpfl, saldrn, snocvr, and gmi1cr added     "
 echo "                       to dump group #9.    "
 echo "         Sep 30 2022 - Don't / Enable dumping of UPRAIR data in     "
 echo "                       group #3./ b/c it is too slow                "
-echo "         Oct 17 2023 - Split msonet to msonet (#5) and msone1 (#10) "
-echo "                      concatenate msonet and msone1 right after dump"
+echo "         Oct 17 2023 - Split msonet to msone0 (#5) and msone1 (#10) "
+echo "                      concatenate msone0 and msone1 right after dump"
 echo "                      Turn off msonet and msone1 - not needed       "
 ###########################################################################
 
@@ -73,7 +73,7 @@ set +u
 #               aircar aircft proflr vadwnd rassda
 #
 # Dump group #5 (pb, TIME_TRIM = OFF) =
-#               msonet
+#               msonet->msone0
 #
 # Dump group #6 (non-pb, TIME_TRIM = OFF) =
 #               nexrad
@@ -687,8 +687,8 @@ export DUMP_NUMBER=5
 #===================================================================
 
 #IG
-DTIM_earliest_msonet=${DTIM_latest_msonet:-"-1.99"}
-DTIM_latest_msonet=${DTIM_latest_msonet:-"+2.00"}
+DTIM_earliest_msone0=${DTIM_latest_msone0:-"-1.99"}
+DTIM_latest_msone0=${DTIM_latest_msone0:-"+2.00"}
 
 #DTIM_latest_msonet=${DTIM_latest_msonet:-"+2.99"}
 
@@ -698,7 +698,7 @@ export SKIP_255101=YES  # Also, b/c CDAS has not tested these providers.
 TIME_TRIM=on
 #TIME_TRIM=off
 
-$ushscript_dump/bufr_dump_obs.sh $dumptime 3.0 1 msonet
+SENDCOM=NO $ushscript_dump/bufr_dump_obs.sh $dumptime 3.0 1 msone0
 error5=$?
 echo "$error5" > $DATA/error5
 
@@ -1143,7 +1143,7 @@ DTIM_latest_msone1=${DTIM_latest_msone1:-"+2.00"}
 
 TIME_TRIM=on #off
 
-$ushscript_dump/bufr_dump_obs.sh $dumptime 3.0 1 msone1
+SENDCOM=NO $ushscript_dump/bufr_dump_obs.sh $dumptime 3.0 1 msone1
 error10=$?
 echo "$error10" > $DATA/error10
 
@@ -1314,11 +1314,16 @@ $err5, $err6, $err7, $err8, $err9 $err10 "
       set -x
    fi
 
+##  concatenate msone0 and msone1, b/c prepobs only wants one file
+##  Turn off msonet dumping for CDAS, staring in obsproc v1.2 
+#    cat ${DATA}/msone0.ibm  ${DATA}/msone1.ibm > ${DATA}/msonet.ibm
+#    cpfs ${DATA}/msonet.ibm  ${COMSP}msonet.${tmmark}.bufr_d
+#    if [ "$SENDDBN" = "YES" ]; then
+#        $DBNROOT/bin/dbn_alert MODEL ${NET_uc}_BUFR_msonet $job \
+#	${COMSP}msonet.${tmmark}.bufr_d
+
 #  endif loop $PROCESS_DUMP
 fi
-
-##  concatenate msonet and msone1, b/c prepobs only wants one file
-#cat ${COMSP}msone1.tm00.bufr_d >> ${COMSP}msonet.tm00.bufr_d
 
 #
 # copy bufr_dumplist to $COMOUT per NCO SPA request
