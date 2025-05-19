@@ -1,17 +1,15 @@
 obsproc v1.3.0  RELEASED        OCT 04, 2024
         v1.3.?  IMPLEMENTED     ??? ??, 2024
 
-PRELUDE-------------------EDIT!!!!!!!!!!!!!!!!!!----------------
+PRELUDE
  
- This update adds *saldrn* obs to prepbufr's SFCSHP component; report type 560 for kx=180,280
+ This update adds *saldrn* obs to global prepbufr's SFCSHP component; report type 560 for kx=180,280
  IMPORTANT NOTE: 
- GSI needs to be updated (contact Andrew.Collard@noaa.gov) at the same time or shortly after
- to add control on saildrone use in DA (switch on/off via subtype 02 for kx=180,280 in global_convinfo.txt)
- Without it the saildrone data will allways feed into GSI DA.
+ GSI (read_prepbufr.f90, search for "560") controls the saildrone use in DA (switch on/off via subtype 02 for kx=180,280 in global_convinfo.txt) Without it the saildrone data will allways feed into GSI DA
 
  Increase TANK_MAX_255004 to alow processing of larget mesonet tanks
- Restrict the SOFAR dump files.
- Reengineer the generation of satwnd and msonet (see satwn* and msone*)
+ 
+ Add gsbpfl dump files to global and rap networks.
 
 FILE CHANGES
  

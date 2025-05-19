@@ -40,6 +40,7 @@ echo "                       to match bufr_dumplist.  Removed tideg from   "
 echo "                       sfcshp dump group tom ake individual dump     "
 echo "                       file.                                         " 
 echo "                     - Copy bufr_dumplist to COMOUT.                 "
+echo "         May 19 2025 - Add sofarw, saldrn, gsbpfl                    "        
 ############################################################################
 
 set -aux
@@ -504,7 +505,7 @@ export STATUS=NO
 export DUMP_NUMBER=4
 
 #=========================================================================
-# Dump # 4 : AIRCAR, AIRCFT, PROFLR, VADWND, GEOIMR, ASCATT, HDOB
+# Dump # 4 : AIRCAR, AIRCFT, PROFLR, VADWND, GEOIMR, ASCATT, HDOB, GSBPFL
 #              (2)     (8)     (4)     (2)     (1)     (1)   (1)
 #            -- TOTAL NUMBER OF SUBTYPES = 19
 #  time window radius is -0.50 to +0.49 hours on AIRCAR, AIRCFT,
@@ -518,6 +519,7 @@ DTIM_latest_aircft=+0.49
 DTIM_latest_proflr=+0.49
 DTIM_latest_vadwnd=+0.49
 DTIM_latest_hdob=+0.49
+DTIM_latest_gsbpfl=+0.49
 
 DTIM_earliest_geoimr=-1.00
 DTIM_latest_geoimr=-0.01
@@ -526,7 +528,7 @@ DTIM_earliest_ascatt=-1.50
 DTIM_latest_ascatt=-0.51
 
 $ushscript_dump/bufr_dump_obs.sh $dumptime 0.50 1 aircar aircft proflr vadwnd \
- geoimr ascatt hdob
+ geoimr ascatt hdob gsbpfl
 error4=$?
 echo "$error4" > $DATA/error4
 
