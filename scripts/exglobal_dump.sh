@@ -132,7 +132,7 @@ set +u
 #               adpupa
 #
 # Dump group #4 (pb, TIME_TRIM defaults to ON) =
-#               aircar aircft proflr vadwnd rassda gpsipw hdob 
+#               aircar aircft proflr vadwnd rassda gpsipw hdob gsbpfl 
 #
 # Dump group #5 (pb, TIME_TRIM defaults to OFF) =
 #               msonet
@@ -1010,10 +1010,13 @@ DTIM_latest_rassda=${DTIM_latest_rassda:-"+2.99"}
 DTIM_earliest_gpsipw=${DTIM_latest_gpsipw:-"-0.05"}
 DTIM_latest_gpsipw=${DTIM_latest_gpsipw:-"+0.05"}
 
+DTIM_earliest_gsbpfl=${DTIM_earliest_gsbpfl:-"-3.25"}
+DTIM_latest_gsbpfl=${DTIM_latest_gsbpfl:-"+3.25"}
+
 TIME_TRIM=${TIME_TRIM:-${TIME_TRIM4:-on}}
 
 $ushscript_dump/bufr_dump_obs.sh $dumptime 3.0 1 aircar aircft proflr vadwnd \
- rassda gpsipw hdob 
+ rassda gpsipw hdob gsbpfl 
 error4=$?
 echo "$error4" > $DATA/error4
 
