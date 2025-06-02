@@ -43,9 +43,11 @@ echo "         Jul 30 2022 - Subpfl, saldrn, snocvr, and gmi1cr added     "
 echo "                       to dump group #9.    "
 echo "         Sep 30 2022 - Don't / Enable dumping of UPRAIR data in     "
 echo "                       group #3./ b/c it is too slow                "
-echo "         Oct 17 2023 - Split msonet to msone0 (#5) and msone1 (#10) "
-echo "                      concatenate msone0 and msone1 right after dump"
-echo "                      Turn off msonet and msone1 - not needed       "
+echo "         Oct 12 2023 - Split msonet to msone0 and msone1,           "
+echo "                       where msone1=255.030; concatenate            "
+echo "                       msone0 and msone1 right after dump.          "
+echo "                       Separated satwnd to its own dump group.      "
+echo "         Oct 17 2023 - Turn off msone0 and msone1 - not needed      "
 ###########################################################################
 
 set -xau

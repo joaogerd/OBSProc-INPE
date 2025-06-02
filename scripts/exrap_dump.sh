@@ -60,7 +60,6 @@ echo "                       concatenate msonet and msone1 right after dump    "
 echo "                     - Pull adpupa and uprair into own Dump group        "
 echo "         Mar 14 2024 - Split gsrasr and gsrcsr to own dump hroups        "
 echo "         Feb 18 2025 - Split gpsipw to own dump group                    "
-echo "         May 15 2025 - Add gsbpfl to group 5                             "
 ################################################################################
 
 set -xau
@@ -79,7 +78,7 @@ set +u
 # Dump group #3 (pb) = proflr rassda sfcshp adpsfc ascatt tideg snocvr
 #                          subpfl saldrn
 # Dump group #4 (pb) = msonet->msone0 (gpsipw to #13) 
-# Dump group #5 (pb) = aircft aircar gsbprf
+# Dump group #5 (pb) = aircft aircar
 # Dump group #6 (non-pb) = nexrad
 # Dump group #7 (non-pb) = airsev 1bhrs4 eshrs3 lgycld ssmisu osbuv8 crsfdb
 #                          saphir gmi1cr
@@ -802,7 +801,7 @@ else
 fi
 
 $ushscript_dump/bufr_dump_obs.sh $dumptime ${def_time_window_5} 1 aircft \
- aircar gsbpfl
+ aircar
 error5=$?
 echo "$error5" > $DATA/error5
 

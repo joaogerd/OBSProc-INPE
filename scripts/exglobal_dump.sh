@@ -1504,6 +1504,12 @@ export DUMP_NUMBER=9
 #            TOTAL NUMBER OF SUBTYPES = 3
 #
 #=======================================================================
+SKIP_005052=YES
+SKIP_005053=YES
+SKIP_005054=YES
+SKIP_005055=YES
+SKIP_005056=YES
+
 DTIM_earliest_gmi1cr=${DTIM_earliest_gmi1cr:-"-3.00"}
 DTIM_latest_gmi1cr=${DTIM_latest_gmi1cr:-"+2.99"}
 

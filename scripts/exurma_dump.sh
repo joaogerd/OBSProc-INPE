@@ -34,7 +34,6 @@ echo "         Oct 12 2023 - Split msonet to msone0 and msone1,     "
 echo "                       where msone1=255.030; concatenate      "
 echo "                       msonet and msone1 right after dump.    "
 echo "                       Seperated satwnd to its own dump group."
-echo "         Sep 09 2024 - Added SOFARW to new group 7.           "
 #####################################################################
 
 set -x
@@ -68,7 +67,6 @@ err3=0
 err4=0
 err5=0
 err6=0
-err7=0
 
 #restrict processing of unexpected big tanks
 #this block appear in all /scripts/ex*_dump.sh proessing msone0 and msone1 
@@ -427,50 +425,6 @@ set -x
 EOF
 set -x
 
-# Group 7 - sofarw
-set +x
-#----------------------------------------------------------------
-cat<<\EOF>thread_7; chmod +x thread_7
-set -uax
-
-cd $DATA
-
-{ echo
-set +x
-echo "********************************************************************"
-echo Script thread_7
-echo Executing on node  `hostname`
-echo Starting time: `date -u`
-echo "********************************************************************"
-echo
-set -x
-
-export STATUS=NO
-export DUMP_NUMBER=7
-
-#============================================================================
-# Dump # 7 : SOFARW -- TOTAL NUMBER OF SUBTYPES = 1
-#              (1)
-#============================================================================
-
-
-def_time_window_7=1.5 # default time window for dump 7 is -1.5 to +1.5 hours
-
-$ushscript_dump/bufr_dump_obs.sh $dumptime ${def_time_window_7} 1 sofarw
-error7=$?
-echo "$error7" > $DATA/error7
-
-set +x
-echo "********************************************************************"
-echo Script thread_7
-echo Finished executing on node  `hostname`
-echo Ending time  : `date -u`
-echo "********************************************************************"
-set -x
-} > $DATA/7.out 2>&1
-EOF
-set -x
-
 
 #----------------------------------------------------------------
 # Now launch the threads
@@ -492,12 +446,11 @@ if [ "$launcher" = cfp ]; then
    echo ./thread_4 >> $DATA/poe.cmdfile
    echo ./thread_5 >> $DATA/poe.cmdfile
    echo ./thread_6 >> $DATA/poe.cmdfile
-   echo ./thread_7 >> $DATA/poe.cmdfile
 
    if [ -s $DATA/poe.cmdfile ]; then
       export MP_CSS_INTERRUPT=yes  # ??
       launcher_DUMP=${launcher_DUMP:-mpiexec}
-      $launcher_DUMP -np 7 --cpu-bind verbose,core cfp $DATA/poe.cmdfile
+      $launcher_DUMP -np 6 --cpu-bind verbose,core cfp $DATA/poe.cmdfile
       errpoe=$?
       if [ $errpoe -ne 0 ]; then
          $DATA/err_exit "***FATAL: EXIT STATUS $errpoe RUNNING POE COMMAND FILE"
@@ -515,11 +468,10 @@ else
    ./thread_4
    ./thread_5
    ./thread_6
-   ./thread_7
 fi
    
 
-cat $DATA/1.out $DATA/2.out $DATA/3.out $DATA/4.out $DATA/5.out $DATA/6.out $DATA/7.out
+cat $DATA/1.out $DATA/2.out $DATA/3.out $DATA/4.out $DATA/5.out $DATA/6.out
 
 set +x
 echo " "
@@ -532,13 +484,12 @@ err3=`cat $DATA/error3`
 err4=`cat $DATA/error4`
 err5=`cat $DATA/error5`
 err6=`cat $DATA/error6`
-err7=`cat $DATA/error7`
 
 
 #================================================================
 
 export STATUS=YES
-export DUMP_NUMBER=8
+export DUMP_NUMBER=7
 $ushscript_dump/bufr_dump_obs.sh $dumptime 3.00 1 null
 
 
@@ -552,8 +503,8 @@ fi
 if [ "$PROCESS_DUMP" = 'YES' ]; then
 
    if [ "$err1" -gt '5' -o "$err2" -gt '5' -o "$err3" -gt '5' \
-     -o "$err4" -gt '5' -o "$err5" -gt '5' -o "$err6" -gt '5' -o "$err7" -gt '5' ]; then
-      for n in $err1 $err2 $err3 $err4 $err5 $err6 $err7
+     -o "$err4" -gt '5' -o "$err5" -gt '5' -o "$err6" -gt '5' ]; then
+      for n in $err1 $err2 $err3 $err4 $err5 $err6
       do
          if [ "$n" -gt '5' ]; then
             if [ "$n" -ne '11' -a "$n" -ne '22' ]; then
@@ -563,7 +514,7 @@ if [ "$PROCESS_DUMP" = 'YES' ]; then
                set +x
 echo
 echo " ###################################################### "
-echo " --> > 22 RETURN CODE FROM DATA DUMP, $err1, $err2, $err3, $err4, $err5, $err6, $err7"
+echo " --> > 22 RETURN CODE FROM DATA DUMP, $err1, $err2, $err3, $err4, $err5, $err6"
 echo " --> @@ F A T A L   E R R O R @@   --  ABNORMAL EXIT    "
 echo " ###################################################### "
 echo
@@ -580,7 +531,7 @@ echo
       set +x
       echo
       echo " ###################################################### "
-      echo " --> > 5 RETURN CODE FROM DATA DUMP, $err1, $err2, $err3, $err4, $err5, $err6, $err7"
+      echo " --> > 5 RETURN CODE FROM DATA DUMP, $err1, $err2, $err3, $err4, $err5, $err6"
       echo " --> NOT ALL DATA DUMP FILES ARE COMPLETE - CONTINUE    "
       echo " ###################################################### "
       echo
