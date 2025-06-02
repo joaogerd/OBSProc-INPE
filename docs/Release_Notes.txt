@@ -1,5 +1,5 @@
 obsproc v1.3.0  RELEASED        OCT 04, 2024
-        v1.3.?  IMPLEMENTED     ??? ??, 2024
+        v1.2.6  IMPLEMENTED     ??? ??, 2024
 
 PRELUDE
  
@@ -14,23 +14,15 @@ PRELUDE
 FILE CHANGES
  
 M docs/Release_Notes.txt
-M jobs/JOBSPROC_URMA_PREP
-M jobs/JOBSPROC_GLOBAL_PREP
 M jobs/JOBSPROC_NAM_PREP_POST
-M parm/prepobs_prepdata.gdas.parm
-M parm/prepobs_prepdata.gfs.parm
-M scripts/excdas_dump.sh
 M scripts/excdas_makeprepbufr.sh
 M scripts/exdump_monitor.sh
 M scripts/exdump_post.sh
 M scripts/exglobal_dump.sh
 M scripts/exnam_dump.sh
 M scripts/exrap_dump.sh
-M scripts/exrtma_dump.sh
-M scripts/exurma_dump.sh
 M sorc/bufr_prepmods.fd/bufr_prepmods.f
 M sorc/bufr_prepmods.fd/mbuoyb.f
-M ush/build.sh
 M versions/run.ver
 M versions/VERSION
 (M-modified; A-added; D-deleted)
@@ -40,46 +32,25 @@ DOCS CHANGES
  Reflect this release changes.
  
 JOBS CHANGES
- jobs/JOBSPROC_URMA_PREP
- Turn off GLERL Great Lakes pseudo obs for URMA's prepbufr
- 
- jobs/JOBSPROC_GLOBAL_PREP
- Add saldrn to prepbufr list
- 
  jobs/JOBSPROC_NAM_PREP_POST
  Replaced obssolete $utilscript with $UTILROOT
 
-PARM CHANGES
- parm/prepobs_prepdata.gdas.parm
- parm/prepobs_prepdata.gfs.parm
- Update the global parm cards to accomodate the saildrone obs in prepbufr
-
 SCRIPTS CHANGES
-
- scripts/excdas_dump.sh
- Split satwnd processing to satwn0, satwn1, and satwn2, and concatenae into satwnd on $COMROOT
-
  scripts/excdas_makeprepbufr.sh
  Commented our lines 506-523, to skip obsolete copy to $LSB_OUTPUTFILE
 
  scripts/exdump_monitor.sh
  Remove Indian AMV tanks for faster satwnd processing, i.e.  00502*
- Intrpduced saldrn tank to monitoring
+ Introduced saldrn obs to monitoring
 
  scripts/exglobal_dump.sh
- Remove Indian AMV tanks for faster satwnd processing, i.e.  00502*; Split satwnd processing to satwn0, satwn1, and satwn2;
- Concat satwn0, satwn1, and satwn2 into satwnd and then dbnet alert it.
+ Remove Indian AMV tanks for faster satwnd processing, i.e.  00502*; 
  Add sfcsno, snomad and sofarw dump groups;
  Save NIC.IMS* ascii file as imssno*, Copy and rename  557th/USAF snow AN to COMROOT as *snow.usaf.grib2
+ Turn off MESH16 snow copy.
 
  scripts/exrap_dump.sh
  Commented out line 487 which is comment text
-
- scripts/exrtma_dump.sh
- Split satwnd processing to satwnd, satwn1, and satwn2
-
- scripts/exurma_dump.sh
- Split satwnd processing to satwnd, satwn1, and satwn2
 
 SORC CHANGES
  sorc/bufr_prepmods.fd/bufr_prepmods.f
@@ -90,10 +61,10 @@ SORC CHANGES
 
 VERSIONS CHANGES
  versions/run.ver
- Set bufr_dump_ver=1.3.0 and prepbufr_ver=1.3.0
+ Set bufr_dump_ver=1.3.0 and prepbufr_ver=1.1.2 (to be approved by SPA)
 
  versions/VERSION
- Updated version to 1.3.0
+ Updated version to 1.2.6 (to be approved by SPA)
 
 ECF
  Contents of ECF directory are not in GitHub
@@ -104,18 +75,15 @@ CHANGES TO OUTPUT AND FILE SIZES
  sfcsno (30MB), snomad(2MB) (gdas,gfs)
  sofarw (gdas,gfs,rtma,urma)
 
- Update *prepbufr*  dumps (gdas, gfs), filesize up y up to 10%
-
 CHANGES TO RESOURCES
-
  Note expecting increase in walltime; more  CPUs will be needed in the PBS cards for the following JOBSPROC_*_DUMP jobs:
- JOBSPROC_GLOBAL_DUMP - 16 CPUs
- JOBSPROC_CDAS_DUMP   - 13
- JOBSPROC_NAM_DUMP    - 12
- JOBSPROC_RAP_DUMP    - 13
- JOBSPROC_RTMA_DUMP   - 6
- JOBSPROC_URMA_DUMP   - 7
- JOBSPROC_DUMP_MONITOR- 10
+ JOBSPROC_GLOBAL_DUMP - 32 CPUs (see in ecf: #PBS -l place=vscatter:exclhost,select=2:ncpus=32:mem=500gb)
+ JOBSPROC_CDAS_DUMP   - 10
+ JOBSPROC_NAM_DUMP/DUMP2 - 11/3
+ JOBSPROC_RAP_DUMP    - 12
+ JOBSPROC_RTMA_DUMP   - 5
+ JOBSPROC_URMA_DUMP   - 6
+ JOBSPROC_DUMP_MONITOR- 15
 
 PRE-IMPLEMENTATION TESTING REQUIREMENTS
 

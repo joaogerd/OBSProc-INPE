@@ -419,8 +419,6 @@ if [ "$PROCESS_GRIBFLDS" = 'YES' ]; then
 #  Post warning if no file found for $ndaysback_warn or beyond.      #
 #  The job will continue if no suitable file is available.           #
 #  ----------------------------------------------------------------  #
-#  copy NPR.SNWN.SP.S1200.MESH16   from $TANK_GRIBFLDS               #
-#  copy NPR.SNWS.SP.S1200.MESH16   from $TANK_GRIBFLDS               #
 #  copy imssnow96.grb.grib2        from $TANK_GRIBFLDS               #
 #  copy seaice.t00z.5min.grb       from $COM_ICE5MIN                 #
 #  copy seaice.t00z.5min.grb.grib2 from $COM_ICE5MIN                 #
@@ -429,8 +427,6 @@ if [ "$PROCESS_GRIBFLDS" = 'YES' ]; then
 ######################################################################
 ######################################################################
    for gribfile in  \
-    NPR.SNWN.SP.S1200.MESH16   \
-    NPR.SNWS.SP.S1200.MESH16   \
     imssnow96.grb.grib2        \
     seaice.t00z.5min.grb       \
     seaice.t00z.5min.grb.grib2 \
@@ -439,11 +435,6 @@ if [ "$PROCESS_GRIBFLDS" = 'YES' ]; then
    do
 # set the values specific to each file
       case $gribfile in
-         NPR.SNWN.SP.S1200.MESH16 | NPR.SNWS.SP.S1200.MESH16 )    # AFWA snow
-          grib_source='$TANK_GRIBFLDS/$DDATE/wgrbbul';
-          target_filename=$gribfile.grb
-          ndaysback=1;
-          ndaysback_warn=1;;
          imssnow96.grb.grib2 )                     # IMS snow
           grib_source='$TANK_GRIBFLDS/$DDATE/wgrbbul';
           target_filename=imssnow96.grib2
@@ -521,7 +512,7 @@ fi
 
 # Save NIC.IMS_v*_*_4km.ascii as imssnow96.asc in $COMROOT
   ascii_file=NIC.IMS
-  ascii_file_var=_${nicims_ver}_*_4km.asc # expects single file availability _v3_YYYYjdy00_4km.asc
+  ascii_file_var=_v3_*_4km.asc # expects single file availability _v3_YYYYjdy00_4km.asc
   ascii_source=$TANK_GRIBFLDS/${PDY}/wgrbbul
   target_filename=imssnow96.asc
 # Get a list of files in the directory, sort them, and get the last one
@@ -1406,7 +1397,7 @@ export DUMP_NUMBER=8
 #
 #=======================================================================
 
-ADD_satwnd="005024 005025 005026 005030 005031 005032 005034 005039 005072"
+ADD_satwnd="005030 005031 005032 005034 005039 005072"
 
 # Skip old bufr METEOSAT AMVs; for testing skip in trigger or version file
 #export SKIP_005064=YES
@@ -1415,12 +1406,12 @@ ADD_satwnd="005024 005025 005026 005030 005031 005032 005034 005039 005072"
 
 # satwnd types
 # ------------
-DTIM_earliest_005024=${DTIM_earliest_005024:-"-3.00"}
-DTIM_latest_005024=${DTIM_latest_005024:-"+2.99"}
-DTIM_earliest_005025=${DTIM_earliest_005025:-"-3.00"}
-DTIM_latest_005025=${DTIM_latest_005025:-"+2.99"}
-DTIM_earliest_005026=${DTIM_earliest_005026:-"-3.00"}
-DTIM_latest_005026=${DTIM_latest_005026:-"+2.99"}
+#DTIM_earliest_005024=${DTIM_earliest_005024:-"-3.00"}
+#DTIM_latest_005024=${DTIM_latest_005024:-"+2.99"}
+#DTIM_earliest_005025=${DTIM_earliest_005025:-"-3.00"}
+#DTIM_latest_005025=${DTIM_latest_005025:-"+2.99"}
+#DTIM_earliest_005026=${DTIM_earliest_005026:-"-3.00"}
+#DTIM_latest_005026=${DTIM_latest_005026:-"+2.99"}
 DTIM_earliest_005030=${DTIM_earliest_005030:-"-3.00"}
 DTIM_latest_005030=${DTIM_latest_005030:-"+2.99"}
 DTIM_earliest_005031=${DTIM_earliest_005031:-"-3.00"}
@@ -2015,7 +2006,7 @@ echo
       echo
       echo " ###################################################### "
       echo " --> > 5 RETURN CODE FROM DATA DUMP, $err1, $err2, $err3, $err4, \
-$err5, $err6, $err7, $err8, $err9, $err10, $err11, $err12, $err13, $err14, $err15 "
+$err5, $err6, $err7, $err8, $err9, $err10, $err11, $err12, $err13 "
       echo " --> NOT ALL DATA DUMP FILES ARE COMPLETE - CONTINUE    "
       echo " ###################################################### "
       echo
@@ -2024,34 +2015,6 @@ $err5, $err6, $err7, $err8, $err9, $err10, $err11, $err12, $err13, $err14, $err1
 
 #  endif loop $PROCESS_DUMP
 fi
-
-#_sfcshp    nem 001001 001013 001002 001003 001004 001007 001102 001103 001101 001113 001104
-#
-##_ships     nem 001001  #> Ship - manual and automatic, restricted          |     50   50 YYYY|     50   50 YYYY|     50   50 YYYY|     |     |
-#_shipsu    nem 001013  #> Ship - manual and automatic, unrestricted 
-#_dbuoy     nem 001002  #> Buoys decoded from FM-18 fmt (moored or drifting)|     50   50 YYYY|     50   50 YYYY|     50   50 YYYY| YEL | YEL |
-#_mbuoy     nem 001003  #> Buoys decoded from FM-13 format (moored)         |     50   50 YYYY|     50   50 YYYY|     50   50 YYYY| RED | RED |
-#_lcman     nem 001004  #> Land-based CMAN stations decoded from CMAN format|     50   50 YYYY|     50   50 YYYY|     50   50 YYYY|     |     |
-#_cstgd     nem 001007  #> Coast Guard                                      | grn 50   50 YYYY| grn 50   50 YYYY| grn 50   50 YYYY|     |     |
-#_shipsb    nem 001101  #> Ship - manual and automatic, restricted (BUFR)   | YEL 50   50 YYYY| YEL 50   50 YYYY| YEL 50   50 YYYY| YEL | YEL |
-#_dbuoyb    nem 001102  #> Drifting buoys (decoded from BUFR)               | grn 50   50 YYYY| grn 50   50 YYYY| grn 50   50 YYYY|     |     |
-#_mbuoyb    nem 001103  #> Moored buoys (decoded from BUFR)                 | grn 50   50 YYYY| grn 50   50 YYYY| grn 50   50 YYYY|     |     |
-#_cmanb     nem 001104  #> Surface Marine CMAN rpts decoded from BUFR format|     50   50 YYYY|     50   50 YYYY|     50   50 YYYY| RED | RED |
-#_shipub    nem 001113  #> Ship - manual and automatic, unrestricted (BUFR) |     50   50 YYYY|     50   50 YYYY|     50   50 YYYY| YEL | YEL |
-
-echo "IG SPLIT sfcshp..."
-${bufr_ROOT}/bin/split_by_subset  ${COMSP}sfcshp.${tmmark}.bufr_d
-mv $PWD/NC001001  ${COMSP}ships.${tmmark}.bufr_d
-mv $PWD/NC001013  ${COMSP}shipsu.${tmmark}.bufr_d
-mv $PWD/NC001002  ${COMSP}dbuoy.${tmmark}.bufr_d
-mv $PWD/NC001003  ${COMSP}mbuoy.${tmmark}.bufr_d
-mv $PWD/NC001004  ${COMSP}lcman.${tmmark}.bufr_d
-mv $PWD/NC001007  ${COMSP}cstgd.${tmmark}.bufr_d
-mv $PWD/NC001101  ${COMSP}shipsb.${tmmark}.bufr_d
-mv $PWD/NC001102  ${COMSP}dbuoyb.${tmmark}.bufr_d
-mv $PWD/NC001103  ${COMSP}mbuoybs.${tmmark}.bufr_d
-mv $PWD/NC001104  ${COMSP}cmanb.${tmmark}.bufr_d
-mv $PWD/NC001113  ${COMSP}shipub.${tmmark}.bufr_d
 
 #
 # copy bufr_dumplist to $COMOUT per NCO SPA request

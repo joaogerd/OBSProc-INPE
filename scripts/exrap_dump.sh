@@ -60,7 +60,7 @@ echo "                       concatenate msonet and msone1 right after dump    "
 echo "                     - Pull adpupa and uprair into own Dump group        "
 echo "         Mar 14 2024 - Split gsrasr and gsrcsr to own dump hroups        "
 echo "         Feb 18 2025 - Split gpsipw to own dump group                    "
-echo "         May 15 2025 - Add gsbprf to group 5                             "
+echo "         May 15 2025 - Add gsbpfl to group 5                             "
 ################################################################################
 
 set -xau
@@ -751,7 +751,7 @@ export STATUS=NO
 export DUMP_NUMBER=5
 
 #===========================================================================
-# Dump # 5 : AIRCFT, AIRCAR, GOESND, GSBPRF -- TOTAL NUMBER OF SUBTYPES = 12
+# Dump # 5 : AIRCFT, AIRCAR, GOESND, GSBPFL -- TOTAL NUMBER OF SUBTYPES = 13
 #              (8)     (2)     (2)   (1)
 #===========================================================================
 
