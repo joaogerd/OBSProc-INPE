@@ -15,12 +15,16 @@ FILE CHANGES
  
 M docs/Release_Notes.txt
 M jobs/JOBSPROC_NAM_PREP_POST
+M jobs/JOBSPROC_URMA_PREP
+M scripts/excdas_dump.sh
 M scripts/excdas_makeprepbufr.sh
 M scripts/exdump_monitor.sh
 M scripts/exdump_post.sh
 M scripts/exglobal_dump.sh
 M scripts/exnam_dump.sh
 M scripts/exrap_dump.sh
+M scripts/exrtma_dump.sh
+M scripts/exurma_dump.sh
 M sorc/bufr_prepmods.fd/bufr_prepmods.f
 M sorc/bufr_prepmods.fd/mbuoyb.f
 M versions/run.ver
@@ -35,7 +39,13 @@ JOBS CHANGES
  jobs/JOBSPROC_NAM_PREP_POST
  Replaced obssolete $utilscript with $UTILROOT
 
+ jobs/JOBSPROC_URMA_PREP
+ Documented GLERLBUFR turn off request
+
 SCRIPTS CHANGES
+ scripts/excdas_dump.sh
+ Corrected msonet to msone0, updated max tank threshold, corrected msonet concatenation
+
  scripts/excdas_makeprepbufr.sh
  Commented our lines 506-523, to skip obsolete copy to $LSB_OUTPUTFILE
 
@@ -49,8 +59,19 @@ SCRIPTS CHANGES
  Save NIC.IMS* ascii file as imssno*, Copy and rename  557th/USAF snow AN to COMROOT as *snow.usaf.grib2
  Turn off MESH16 snow copy.
 
+ scripts/exnam_dump.sh
+ Corrected mesonet to msone0, corrected msonet concatenation
+
  scripts/exrap_dump.sh
  Commented out line 487 which is comment text
+ Corrected mesonet to msone0, corrected msonet concatenation; put pgsipw in separate dump group (so it's send to $COMROOT)
+ Split gsrcsr and gsrasr to two groups
+
+ scripts/exrtma_dump.sh
+ Corrected mesonet to msone0, corrected msonet concatenation, updated max tank threshold
+
+ scripts/exurma_dump.sh
+ Corrected mesonet to msone0, corrected msonet concatenation, updated max tank threshold
 
 SORC CHANGES
  sorc/bufr_prepmods.fd/bufr_prepmods.f
