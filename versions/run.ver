@@ -34,7 +34,4 @@ export MAILCC="iliana.genkova@noaa.gov"
 #export LOUD=on
 #export KEEPDATA=YES
 #export DEBUG_LEVEL=3
-#
-# Overwrite the TANK_MAX_255004 value in /scripts/ex*_dump.sh 
-export TANK_MAX_255004=2684354560  #2.5Gb
 

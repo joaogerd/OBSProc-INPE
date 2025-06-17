@@ -491,7 +491,7 @@ fi
 if [ "$PROCESS_DUMP" = 'YES' ]; then
 
    if [ "$err1" -gt '5' -o "$err2" -gt '5' -o "$err3" -gt '5' \
-     -o "$err4" -gt '5' -o "$err5" -gt '5'  -gt '5' ] ; then
+     -o "$err4" -gt '5' -o "$err5" -gt '5' ] ; then
       for n in $err1 $err2 $err3 $err4 $err5
       do
          if [ "$n" -gt '5' ]; then

@@ -750,8 +750,8 @@ export STATUS=NO
 export DUMP_NUMBER=5
 
 #===========================================================================
-# Dump # 5 : AIRCFT, AIRCAR, GOESND, GSBPFL -- TOTAL NUMBER OF SUBTYPES = 13
-#              (8)     (2)     (2)   (1)
+# Dump # 5 : AIRCFT, AIRCAR, GOESND -- TOTAL NUMBER OF SUBTYPES = 12
+#              (8)     (2)     (2)  
 #===========================================================================
 
 export LALO=0  # GLOBAL dumps here (AIRCFT and AIRCAR dumped globally to

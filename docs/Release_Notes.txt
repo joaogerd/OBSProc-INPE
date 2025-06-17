@@ -65,7 +65,6 @@ SCRIPTS CHANGES
  scripts/exrap_dump.sh
  Commented out line 487 which is comment text
  Corrected mesonet to msone0, corrected msonet concatenation; put pgsipw in separate dump group (so it's send to $COMROOT)
- Split gsrcsr and gsrasr to two groups
 
  scripts/exrtma_dump.sh
  Corrected mesonet to msone0, corrected msonet concatenation, updated max tank threshold
