@@ -843,8 +843,6 @@ if [ "$SENDDBN" = "YES" ]; then
     ${COMSP}ascatt.tm00.bufr_d
    $DBNROOT/bin/dbn_alert MODEL ${NET_uc}_BUFR_snocvr $job \
     ${COMSP}snocvr.tm00.bufr_d
-   $DBNROOT/bin/dbn_alert MODEL ${NET_uc}_BUFR_sfcsno $job \
-    ${COMSP}sfcsno.tm00.bufr_d
    if [ "$NET" = 'gdas' ]; then
     ####### ALERT TURNED ON for GDAS only ########################
       $DBNROOT/bin/dbn_alert MODEL ${NET_uc}_BUFR_ascatw $job \
