@@ -1,15 +1,12 @@
 obsproc v1.3.0  RELEASED        OCT 04, 2024
+        v1.2.6  RE-RELEASE      JUN 18, 2025
         v1.2.6  IMPLEMENTED     ??? ??, 2024
 
 PRELUDE
- 
- This update adds *saldrn* obs to global prepbufr's SFCSHP component; report type 560 for kx=180,280
- IMPORTANT NOTE: 
- GSI (read_prepbufr.f90, search for "560") controls the saildrone use in DA (switch on/off via subtype 02 for kx=180,280 in global_convinfo.txt) Without it the saildrone data will allways feed into GSI DA
-
  Increase TANK_MAX_255004 to alow processing of larget mesonet tanks
- 
- Add gsbpfl dump files to global and rap networks.
+ Add sofarw, sfcsno, snomad, and gsbpfl dump files to the global networks; Save NIC.IMS* ascii file as *imssno*
+ Removes i)the INSAT satellite winds from *satwnd* bufr dumps; ii)CONUS satellite winds from *satwhr* bufr dumps;
+ Adds Himawari satellite winds to *satwhr* 
 
 FILE CHANGES
  
@@ -53,10 +50,12 @@ SCRIPTS CHANGES
  Remove Indian AMV tanks for faster satwnd processing, i.e.  00502*
  Introduced saldrn obs to monitoring
 
+ scripts/exdump_post.sh
+ Alert sfcsno for NOMADS distribution
+
  scripts/exglobal_dump.sh
- Remove Indian AMV tanks for faster satwnd processing, i.e.  00502*; 
- Add sfcsno, snomad and sofarw dump groups;
- Save NIC.IMS* ascii file as imssno*, Copy and rename  557th/USAF snow AN to COMROOT as *snow.usaf.grib2
+ Remove Indian AMV tanks (unused) for faster satwnd processing, i.e. 00502*; 
+ Add sfcsno, snomad and sofarw dump groups; Save NIC.IMS* ascii file as imssno*
  Turn off MESH16 snow copy.
 
  scripts/exnam_dump.sh
@@ -90,10 +89,9 @@ ECF
  Contents of ECF directory are not in GitHub
 
 CHANGES TO OUTPUT AND FILE SIZES
-
  Generate new dumps:
- sfcsno (30MB), snomad(2MB) (gdas,gfs)
- sofarw (gdas,gfs,rtma,urma)
+ sfcsno(30MB),snomad(2MB),sofarw (gdas,gfs)
+ satwnd dump sizes will drop insignificantly; satwhr dump sizes will grow by 50% when tropical cyclon is present in the Pacific ocean
 
 CHANGES TO RESOURCES
  Note expecting increase in walltime; more  CPUs will be needed in the PBS cards for the following JOBSPROC_*_DUMP jobs:
@@ -120,7 +118,7 @@ PRE-IMPLEMENTATION TESTING REQUIREMENTS
  Copy the following directoris:
  $model.YYYYMMDD, where model: gfs,gdas,nam,rap,rap_e,rap_p,urma,cdas,rtma,rtma_ru,dump
  $model.YYYYMM,   where model: cdas
- $model.YYYY,     where model:mods
+ $model.YYYY,     where model: mods
  $model,          where:gdas, sdm_rtdm
  from the para run:
  /para/com/obsproc/v1.2/
@@ -130,7 +128,7 @@ PRE-IMPLEMENTATION TESTING REQUIREMENTS
  Good to know:
  - the RAP uprair dumps might be 0 size for the hours not around 00,06,12,18 UTC
  - the CDAS prepbufr files are 6 different flavours, it takes about 26 hours for all to be generated
- - some *bufr_d files might be 0 size until the relevant data stream is recovered (wndtwr)
+ - some *bufr_d files might be 0 size until the relevant data stream is recovered (e.g. sofarw, saldrn)
  - please contact obsproc_support@noaa.gov should you have any Qs regarding testing
 
 DISSEMINATION INFORMATION
