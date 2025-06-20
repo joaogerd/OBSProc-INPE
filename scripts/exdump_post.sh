@@ -506,7 +506,7 @@ $dumptime"
                rassda nexrad gpsro  airsev goesfv wndsat wdsatr osbuv8 \
                ascatt ascatw mtiasi avcsam avcspm gome   lghtng omi    \
                esamua esamub eshrs3 esmhs  ssmisu sevcsr lgycld efclam \
-	       sfcsno $aircraft_nr_dm2 
+	       $aircraft_nr_dm2
 #  --> don't add any new dumps here since files are already unblocked
 #      on WCOSS!!
 

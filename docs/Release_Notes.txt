@@ -92,6 +92,7 @@ CHANGES TO OUTPUT AND FILE SIZES
  Generate new dumps:
  sfcsno(30MB),snomad(2MB),sofarw (gdas,gfs)
  satwnd dump sizes will drop insignificantly; satwhr dump sizes will grow by 50% when tropical cyclon is present in the Pacific ocean
+ snocvr dump sizes will be approxiamtely halved due to a bufr_dumplist fix (removed a duplicate entry)
 
 CHANGES TO RESOURCES
  Note expecting increase in walltime; more  CPUs will be needed in the PBS cards for the following JOBSPROC_*_DUMP jobs:
