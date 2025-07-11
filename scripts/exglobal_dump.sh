@@ -536,24 +536,31 @@ fi
   ascii_file1_var=${ascii_file1_var:-"_DD.${PDY}_DT.${cyc}00_DF.GR2"}
   ascii_source=${TANK_GRIBFLDS}/${PDY}/wgrbbul/557thWW_snow
   target_filename=snow.usaf.grib2
-  if [ -s ${ascii_source}/${ascii_file1}${ascii_file1_var} ]; then
-    set +x; echo -e "\nPicking up 557th USAF snow file ${ascii_source}/${ascii_file1}${ascii_file1_var}\n"; set -x
-    cp ${ascii_source}/${ascii_file1}${ascii_file1_var} ${COMSP}${target_filename}
+  if [ -s "${ascii_source}/${ascii_file1}${ascii_file1_var}" ]; then
+      set +x; echo -e "\nPicking up USAF 557thWW_snow file ${ascii_source}/${ascii_file1}${ascii_file1_var}\n"; set -x
+      cp "${ascii_source}/${ascii_file1}${ascii_file1_var}" "${COMSP}${target_filename}"
+      usaf_in=true
   else
-    set +x; echo -e "\nReuse prior cycle 557th USAF snow file \n"; set -x
-    prior_yyyymmddCC=$($NDATE -6 ${PDY}${cyc})
-    PDY_p=`echo $prior_yyyymmddCC|cut -c1-8`
-    cyc_p=`echo $prior_yyyymmddCC|cut -c9-10`
-    ascii_source=${TANK_GRIBFLDS}/${PDY_p}/wgrbbul/557thWW_snow
-    ascii_file1_var="_DD.${PDY_p}_DT.${cyc_p}00_DF.GR2"
-    if [ -s  ${ascii_source}/${ascii_file1}${ascii_file1_var} ]; then
-      cp ${ascii_source}/${ascii_file1}${ascii_file1_var} ${COMSP}${target_filename}
-    else
-      export COMSPm1=$COMROOT/${obsNET}/${obsproc_ver}/${RUN}.${PDY_p}/$RUN.${cyc_p}.
-      echo $COMSPm1
-      cp ${COMSPm1}$target_filename ${COMSP}$target_filename
-
-    fi
+      usaf_in=false
+      for step_back in 6 12 18 24 30 36 42 48
+      do
+         prior_yyyymmddCC=$($NDATE -${step_back} ${PDY}${cyc})
+         PDY_p=`echo $prior_yyyymmddCC|cut -c1-8`
+         cyc_p=`echo $prior_yyyymmddCC|cut -c9-10`
+         ascii_source="${TANK_GRIBFLDS}/${PDY_p}/wgrbbul/557thWW_snow"
+         ascii_file1_var="_DD.${PDY_p}_DT.${cyc_p}00_DF.GR2"
+         if [ -s  "${ascii_source}/${ascii_file1}${ascii_file1_var}" ]; then
+           cp "${ascii_source}/${ascii_file1}${ascii_file1_var}" "${COMSP}${target_filename}"
+           usaf_in=true
+           set +x; echo -e "\nPicking up a ${step_back}-hour-old 557thWW_snow file \n"; set -x
+           break
+	 else
+           set +x; echo -e "\n***WARNING: ${step_back}-hour-old 557thWW_snow file not found \n"; set -x
+         fi
+      done
+  fi
+  if [ "$usaf_in" = false ]; then
+      set +x; echo -e "\n***WARNING: No suitable wrgbbul/557thWW_snow/PS.557WW_* file found the last 48h \n"; set -x
   fi
 
   if [ "$SENDECF" = "YES" ]; then
