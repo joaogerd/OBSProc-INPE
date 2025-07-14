@@ -3,7 +3,7 @@ obsproc v1.2.6  RELEASED        JUN 18, 2025
 
 PRELUDE
  Increase TANK_MAX_255004 to alow processing of larget mesonet tanks
- Add sofarw, sfcsno, snomad, and gsbpfl dump files to the global networks; Save NIC.IMS* ascii file as *imssno*
+ Add sofarw, sfcsno, snomad, gsbpfl, axbt, xbtctd, altkob dump files to the global networks; Save NIC.IMS* ascii file as *imssno*
  Removes i)the INSAT satellite winds from *satwnd* bufr dumps; ii)CONUS satellite winds from *satwhr* bufr dumps;
 
 FILE CHANGES
@@ -113,7 +113,7 @@ PRE-IMPLEMENTATION TESTING REQUIREMENTS
  for the following networkname values: GLOBAL, NAM, RAP, URMA, RTMA, CDAS
 
  Parallel Production Testing (PPT)
- After testing obsproc v1.3 in the /para space, we recommend doing for at least two weeks,
+ After testing obsproc v1.2.6 in the /para space, we recommend doing for at least two weeks,
  it is best to do a single cycle Parallel Production Testing (PPT) (i.e. obsproc + GFS + SDM/thanks + EVS).
  Copy the following directoris:
  $model.YYYYMMDD, where model: gfs,gdas,nam,rap,rap_e,rap_p,urma,cdas,rtma,rtma_ru,dump
@@ -137,7 +137,7 @@ DISSEMINATION INFORMATION
 
 SPECIAL INSTRUCTIONS
 
- 1.Implement release/obsproc.v1.3.0, release/bufr-dump.v1.3.0, and release/prepobs.v1.2.0 at the same time
+ 1.Implement release/obsproc.v1.2.6, release/bufr-dump.v1.3.0, and release/prepobs.v1.1.2 at the same time
 
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 obsproc v1.2.5  SPA Update to reduce gfs/gdas dump runtime and runtime variability
