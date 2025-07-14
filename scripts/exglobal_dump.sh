@@ -1129,7 +1129,7 @@ export DUMP_NUMBER=6
 #            AXBT:   1 subtype
 #            XBTCTD: 1 subtype
 #            ALTKOB: 1 subtype
-#            SOFAR:  1 subtype
+#            SOFARW:  1 subtype
 #            --------------------
 #            TOTAL NUMBER OF SUBTYPES = 12
 #===================================================================

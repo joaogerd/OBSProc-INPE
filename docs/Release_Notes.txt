@@ -45,16 +45,17 @@ SCRIPTS CHANGES
  Commented our lines 506-523, to skip obsolete copy to $LSB_OUTPUTFILE
 
  scripts/exdump_monitor.sh
- Remove Indian AMV tanks for faster satwnd processing, i.e.  00502*
- Introduced saldrn obs to monitoring
+ Remove Indian AMV tanks for faster satwnd processing, i.e. 00502*
+ Introduced saldrn, sofarw, gsbpfl obs to monitoring
 
  scripts/exdump_post.sh
- Alert sfcsno for NOMADS distribution
+ Alert sfcsno *.nr for NOMADS distribution
 
  scripts/exglobal_dump.sh
  Remove Indian AMV tanks (unused) for faster satwnd processing, i.e. 00502*; 
- Add sfcsno, snomad and sofarw dump groups; Save NIC.IMS* ascii file as imssno*
- Turn off MESH16 snow copy.
+ Add sfcsno, snomad, sofarw, gsbpfl dump groups; Save NIC.IMS* ascii file as imssno*
+ Turn off MESH16 snow copy. Improve rename/copy of USAF 557th snow analysis
+ Add axbt, xbtctd, altkob dumps
 
  scripts/exnam_dump.sh
  Corrected mesonet to msone0, corrected msonet concatenation
