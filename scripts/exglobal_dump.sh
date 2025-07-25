@@ -221,14 +221,17 @@ else
 fi
 
 # NAP and NAP_adpupa instroduced so that uprair can run early on his own
-NAP=${NAP:-600} #b/c cron is moved to run 10min (600s) early
+#NAP=${NAP:-600} #b/c cron is moved to run 10min (600s) early
+NAP=${NAP:-120} #b/c cron is moved to run 2min (120s) early
 if [ "$NET" = 'gfs' ]; then
    ADPUPA_wait=${ADPUPA_wait:-"YES"}
-   NAP_adpupa=${NAP_adpupa:-800} #600s(compensate early cron) + 300s(for adpupa data to come)
+#   NAP_adpupa=${NAP_adpupa:-800} #600s(compensate early cron) + 300s(for adpupa data to come)
+   NAP_adpupa=${NAP_adpupa:-320} #120s(compensate early cron) + 200s(for adpupa data to come)
 ########ADPUPA_wait=${ADPUPA_wait:-"NO"} # saves time if ADPUPA_wait=NO
 else
    ADPUPA_wait=${ADPUPA_wait:-"NO"}
-   NAP_adpupa=${NAP_adpupa:-600} #like other dump groups
+#   NAP_adpupa=${NAP_adpupa:-600} #like other dump groups
+   NAP_adpupa=${NAP_adpupa:-120} #like other dump groups
 fi
 
 # send extra output of DUMP2 for monitoring purposes.
