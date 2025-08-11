@@ -334,7 +334,7 @@ EOFparm
    REMX=${REMX:-$EXECobsproc/bufr_remorest}
    REMC=${REMC:-bufr_remorest.datadump.parm}
 
-   for file in adpsfc aircar aircft msonet sfcshp lghtng gpsipw saphir gpsro
+   for file in adpsfc aircar aircft msonet sfcshp lghtng gpsipw saphir gpsro sfcsno
    do
       filestem=$RUN.$cycle.$file.$tmmark.bufr_d
       [ -f $COMIN/$filestem ]  ||  continue
